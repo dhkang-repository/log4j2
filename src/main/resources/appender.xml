@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- Async Appenders 정의 -->
+<Appenders>
+    <!-- 비동기 파일 출력 (일별로 로그 파일 분할) -->
+    <Async name="AsyncFileAppender" immediateFlush="false">
+        <AppenderRef ref="FileAppender"/>
+    </Async>
+
+    <!-- 비동기 에러 로그 파일 출력 -->
+    <Async name="AsyncErrorFileAppender">
+        <AppenderRef ref="ErrorFileAppender"/>
+    </Async>
+
+    <!-- 실제 콘솔 출력 -->
+    <Console name="ConsoleAppender" target="SYSTEM_OUT">
+        <PatternLayout pattern="${logPattern}"/>
+    </Console>
+
+    <!-- 실제 파일 출력 -->
+    <RollingFile name="FileAppender" fileName="${logDir}/app.log" filePattern="${logDir}/app-%d{yyyy-MM-dd}.log.gz">
+        <PatternLayout pattern="${logPattern}"/>
+        <Policies>
+            <TimeBasedTriggeringPolicy/>
+        </Policies>
+    </RollingFile>
+
+    <!-- 실제 에러 로그 파일 출력 -->
+    <RollingFile name="ErrorFileAppender" fileName="${logDir}/error.log" filePattern="${logDir}/error-%d{yyyy-MM-dd}.log.gz">
+        <PatternLayout pattern="${logPattern}"/>
+        <Policies>
+            <TimeBasedTriggeringPolicy/>
+        </Policies>
+        <Filters>
+            <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+        </Filters>
+    </RollingFile>
+</Appenders>

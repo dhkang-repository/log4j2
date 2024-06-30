@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Loggers 정의 -->
+<Loggers>
+    <!-- Root Logger 정의 -->
+    <AsyncRoot level="INFO">
+        <AppenderRef ref="AsyncConsoleAppender"/>
+        <AppenderRef ref="AsyncFileAppender"/>
+    </AsyncRoot>
+
+    <!-- 특정 패키지에 대한 Logger 정의 -->
+    <AsyncLogger name="com.example.log4j2.async.AsyncTest" level="DEBUG" additivity="false">
+        <AppenderRef ref="AsyncFileAppender"/>
+    </AsyncLogger>
+
+    <!-- 특정 패키지에 대한 Logger 정의 -->
+    <Logger name="com.example.log4j2.sync.SyncTest" level="DEBUG" additivity="false">
+        <AppenderRef ref="FileAppender"/>
+    </Logger>
+
+    <!-- 에러 전용 Logger 정의 -->
+    <AsyncLogger name="com.example" level="INFO" additivity="false">
+        <AppenderRef ref="AsyncErrorFileAppender"/>
+        <AppenderRef ref="AsyncFileAppender"/>
+    </AsyncLogger>
+
+</Loggers>

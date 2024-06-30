@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration xmlns:xi="http://www.w3.org/2001/XInclude"
+               name="XIncludeDemo"
+               status="TRACE">
+    <xi:include href="property.xml" />
+    <xi:include href="appender.xml" />
+    <xi:include href="logger.xml" />
+</Configuration>
